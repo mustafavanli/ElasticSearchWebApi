@@ -8,6 +8,5 @@ namespace ElasticSearchWebApi.Models
         public string Name { get; set; }
         public string Lastname { get; set; }
         public GeoLocation Location { get; set; }
-        public CompletionField Suggest { get; set; }
     }
 }

@@ -22,6 +22,12 @@ namespace ElasticSearchWebApi.Controllers
             var customer = response.Source;
             return customer;
         }
+        [HttpPut("Update")]
+        public async Task<Customer> GetById(Customer customer)
+        {
+            var response = await client.UpdateAsync<Customer>(customer.Id,f=>f.Doc(customer));
+            return customer;
+        }
         [HttpGet("GetAll")]
         public async Task<List<Customer>> GetAll()
         {

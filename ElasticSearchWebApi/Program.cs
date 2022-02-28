@@ -2,8 +2,12 @@ using ElasticSearchWebApi.Models;
 using Nest;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
+var services = builder.Services;
 
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -13,9 +17,9 @@ var settings = new ConnectionSettings(new Uri("https://...............es.us-cent
         .PrettyJson()
         .DefaultMappingFor<Customer>(m => m.IdProperty(p => p.Id));
 
-settings.BasicAuthentication("elastic",".......");
+settings.BasicAuthentication("elastic", ".......");
 
-builder.Services.AddSingleton<IElasticClient>(new ElasticClient(settings));
+services.AddSingleton<IElasticClient>(new ElasticClient(settings));
 
 
 var app = builder.Build();
@@ -34,3 +38,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
