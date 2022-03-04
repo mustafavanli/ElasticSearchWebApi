@@ -23,7 +23,7 @@ namespace ElasticSearchWebApi.Controllers
             return customer;
         }
         [HttpPut("Update")]
-        public async Task<Customer> GetById(Customer customer)
+        public async Task<Customer> Update(Customer customer)
         {
             var response = await client.UpdateAsync<Customer>(customer.Id,f=>f.Doc(customer));
             return customer;
